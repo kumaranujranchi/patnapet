@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patna Pets - Your Furry Friend's Bestie</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#F97316" /* Orange-500 */,
+              secondary: "#FB923C" /* Orange-400 */,
+              cta: "#2563EB" /* Blue-600 */,
+              background: "#FFF7ED" /* Orange-50 */,
+              text: "#9A3412" /* Orange-900 */,
+            },
+            fontFamily: {
+              headings: ["Fredoka", "sans-serif"],
+              body: ["Nunito", "sans-serif"],
+            },
+            boxShadow: {
+              clay: "inset -10px -10px 20px rgba(174, 174, 192, 0.2), inset 10px 10px 20px #FFFFFF, 8px 8px 20px rgba(174, 174, 192, 0.2)",
+              "clay-btn":
+                "inset -6px -6px 10px rgba(0, 0, 0, 0.2), inset 6px 6px 10px rgba(255, 255, 255, 0.3), 6px 6px 15px rgba(0, 0, 0, 0.1)",
+              "clay-card": "20px 20px 60px #d1d5db, -20px -20px 60px #ffffff",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --primary: #f97316;
+        --secondary: #fb923c;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #fff7ed;
+        color: #9a3412;
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: "Fredoka", sans-serif;
+      }
+      .clay-card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 2rem;
+        box-shadow:
+          8px 8px 16px #e6ddd6,
+          -8px -8px 16px #ffffff;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .clay-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 
+          15px 15px 30px rgba(0, 0, 0, 0.1),
+          -10px -10px 20px rgba(255, 255, 255, 1);
+      }
+      .clay-btn {
+        background-color: #f97316;
+        color: white;
+        border-radius: 1.5rem;
+        box-shadow:
+          inset -4px -4px 8px rgba(0, 0, 0, 0.1),
+          inset 4px 4px 8px rgba(255, 255, 255, 0.2),
+          6px 6px 12px rgba(249, 115, 22, 0.2);
+        transition: all 0.3s ease;
+      }
+      .clay-btn:hover {
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 10px 10px 20px rgba(249, 115, 22, 0.3);
+      }
+      .clay-btn:active {
+        box-shadow:
+          inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+          inset -4px -4px 8px rgba(255, 255, 255, 0.1);
+        transform: scale(0.98);
+      }
+
+      /* Floating Animation */
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+      }
+      .animate-float {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      /* Reveal on Scroll */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 1s ease-out, transform 0.8s ease-out;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Paw Trail Style */
+      .paw-trail {
+        position: fixed;
+        pointer-events: none;
+        font-size: 24px;
+        opacity: 0.8;
+        z-index: 10000;
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+    </style>
+  </head>
+  <body class="selection:bg-orange-200">
+    <!-- Global Background Video -->
+    <video autoplay loop muted playsinline class="fixed top-0 left-0 w-full h-full object-cover -z-50">
+        <source src="assets/dog.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="fixed top-0 left-0 w-full h-full bg-white/80 -z-40"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-4 px-4 sm:px-8">
+      <div
+        class="max-w-7xl mx-auto clay-card px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md"
+      >
+        <div class="text-2xl font-bold text-primary tracking-wide">
+          Patna Pets 🐾
+        </div>
+        <div class="hidden md:flex space-x-8 font-semibold text-gray-700">
+          <a href="#services" class="hover:text-primary transition-colors">Services</a>
+          <a href="#boarding" class="hover:text-primary transition-colors">Boarding</a>
+          <a href="#blog" class="hover:text-primary transition-colors">Blog</a>
+          <a href="#about" class="hover:text-primary transition-colors">About Us</a>
+          <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+        </div>
+        <button
+          class="clay-btn px-6 py-2 font-bold tracking-wide hidden sm:block"
+        >
+          Visit Us
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 px-4 sm:px-8 min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-8 reveal active">
+            <span class="inline-block px-6 py-2 rounded-full bg-orange-100/90 text-primary font-bold text-sm tracking-wider shadow-sm backdrop-blur-md animate-float">
+                #1 PET STORE IN PATNA
+            </span>
+            <h1 class="text-5xl md:text-8xl font-bold leading-tight text-gray-900">
+                Making Tails <br/>
+                <span class="text-primary drop-shadow-sm">Wag with Joy!</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-800 max-w-2xl mx-auto leading-relaxed font-medium">
+                Premium food, fun toys, and the best grooming services for your furry family members. Come visit Patna Pets today!
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <button class="clay-btn px-10 py-5 text-xl font-bold">
+                    Shop Now
+                </button>
+                <button class="px-10 py-5 text-xl font-bold text-primary bg-white/90 rounded-3xl shadow-lg hover:bg-white hover:scale-105 transition-all backdrop-blur-md">
+                    Book Grooming
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto reveal">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-primary drop-shadow-sm">Our Paw-some Services</h2>
+                <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">Everything your pet needs to live a happy, healthy, and stylish life.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="clay-card p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-20 h-20 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center text-4xl group-hover:scale-110 transition-transform shadow-inner">
+                        🛁
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Spa & Grooming</h3>
+                    <p class="text-gray-600 leading-relaxed">Relaxing baths and stylish haircuts to make your pet look amazing.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="clay-card p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-20 h-20 mx-auto bg-blue-100 rounded-2xl flex items-center justify-center text-4xl group-hover:scale-110 transition-transform shadow-inner">
+                        💊
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Pet Medicine</h3>
+                    <p class="text-gray-600 leading-relaxed">Essential medicines and supplements for your pet's health.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="clay-card p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-20 h-20 mx-auto bg-green-100 rounded-2xl flex items-center justify-center text-4xl group-hover:scale-110 transition-transform shadow-inner">
+                        🩺
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Clinical Visits</h3>
+                    <p class="text-gray-600 leading-relaxed">Expert home visits for clinical support and checkups.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="clay-card p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-20 h-20 mx-auto bg-purple-100 rounded-2xl flex items-center justify-center text-4xl group-hover:scale-110 transition-transform shadow-inner">
+                        🧸
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Accessories</h3>
+                    <p class="text-gray-600 leading-relaxed">Toys, grooming products, and accessories in our offline store.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grooming Benefits Section -->
+    <section class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-primary drop-shadow-sm">Why is Regular Grooming Essential?</h2>
+                <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">It's not just about looks—it's about health and happiness.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
+                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+                    <div class="text-3xl mb-3">✨</div>
+                    <h4 class="font-bold text-gray-900">Healthy Coat</h4>
+                    <p class="text-sm text-gray-600">Promotes shine and skin health.</p>
+                </div>
+                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+                    <div class="text-3xl mb-3">🧶</div>
+                    <h4 class="font-bold text-gray-900">No Matting</h4>
+                    <p class="text-sm text-gray-600">Prevents painful tangles and odor.</p>
+                </div>
+                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+                    <div class="text-3xl mb-3">🔍</div>
+                    <h4 class="font-bold text-gray-900">Check Parasites</h4>
+                    <p class="text-sm text-gray-600">Spot ticks or infections early.</p>
+                </div>
+                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+                    <div class="text-3xl mb-3">💅</div>
+                    <h4 class="font-bold text-gray-900">Nail Comfort</h4>
+                    <p class="text-sm text-gray-600">Keep paws healthy and comfy.</p>
+                </div>
+                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+                    <div class="text-3xl mb-3">🌈</div>
+                    <h4 class="font-bold text-gray-900">Boost Mood</h4>
+                    <p class="text-sm text-gray-600">Improves your pet's overall comfort.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="clay-card bg-primary text-white p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10 text-9xl">💰</div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-orange-100">Our Grooming Prices</h2>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center border-b border-orange-400 pb-4">
+                        <span class="text-xl font-bold">Basic Grooming</span>
+                        <span class="text-2xl font-bold">₹800+</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-orange-400 pb-4">
+                        <span class="text-xl font-bold">Deluxe Spa Experience</span>
+                        <span class="text-2xl font-bold">₹1,500+</span>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-orange-400 pb-4">
+                        <span class="text-xl font-bold">Feline Fine (Cat Grooming)</span>
+                        <span class="text-2xl font-bold">₹1,200+</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold">Clinical Support Home Visit</span>
+                        <span class="text-2xl font-bold">₹1,000+</span>
+                    </div>
+                </div>
+                <p class="mt-8 text-center text-orange-100 italic font-medium">Transparency is key—no hidden fees, just amazing care.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-primary drop-shadow-sm mb-16">Why Choose Patna Pets?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+                    <div class="text-4xl mb-4">🏆</div>
+                    <h4 class="font-bold text-gray-900">Certified Groomers</h4>
+                    <p class="text-sm text-gray-600 mt-2">Love and skill in every touch.</p>
+                </div>
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+                    <div class="text-4xl mb-4">🛡️</div>
+                    <h4 class="font-bold text-gray-900">Safe & Hygienic</h4>
+                    <p class="text-sm text-gray-600 mt-2">Sanitized tools and equipment.</p>
+                </div>
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h4 class="font-bold text-gray-900">Unique Experience</h4>
+                    <p class="text-sm text-gray-600 mt-2">Specific to breed and temperament.</p>
+                </div>
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+                    <div class="text-4xl mb-4">💎</div>
+                    <h4 class="font-bold text-gray-900">Best Quality</h4>
+                    <p class="text-sm text-gray-600 mt-2">Gentle vet-approved products.</p>
+                </div>
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+                    <div class="text-4xl mb-4">🧘</div>
+                    <h4 class="font-bold text-gray-900">Comfort First</h4>
+                    <p class="text-sm text-gray-600 mt-2">Calm and stress-free visits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto reveal">
+            <div class="clay-card bg-white/90 backdrop-blur-md p-8 md:p-16 rounded-[3rem] shadow-2xl flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1 space-y-6">
+                    <span class="inline-block px-4 py-1 rounded-full bg-orange-100 text-primary font-bold text-sm tracking-wide">ABOUT US</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900">Your Local Pet Experts in <span class="text-primary">Patna</span></h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        At Patna Pets, we believe every pet deserves the best care. From premium nutrition and grooming products to clinical support right at your doorstep, we are dedicated to the well-being of your furry friends.
+                    </p>
+                    <div class="flex items-start gap-4 p-4 bg-orange-50 rounded-2xl border border-orange-100">
+                        <div class="text-3xl">📍</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Visit Our Store</h4>
+                            <p class="text-gray-600">Saguna More, Patna, Bihar</p>
+                            <p class="text-sm text-primary font-semibold mt-1">Open Daily: 10 AM - 9 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-orange-400 to-primary rounded-[2rem] rotate-3 blur-sm opacity-50 -z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop" alt="Patna Pets Store" class="rounded-[2rem] shadow-xl w-full object-cover h-80 md:h-96">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pet Boarding Section -->
+    <section id="boarding" class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto reveal">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-primary drop-shadow-sm">Premium Pet Boarding</h2>
+                <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">Safe, clean, and fun stays where your pet feels right at home.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">A Home Away From Home</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Going out of town? Trust Patna Pets to provide the most comfortable and caring boarding experience for your furry family members. We offer personalized attention and 24/7 monitoring.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 font-bold text-gray-800">
+                            <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-primary text-sm">✓</span>
+                            Comfortable Boarding Suites
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-gray-800">
+                            <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-primary text-sm">✓</span>
+                            Daily Walks & Play Sessions
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-gray-800">
+                            <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-primary text-sm">✓</span>
+                            Nutritious, Vet-Approved Meals
+                        </li>
+                        <li class="flex items-center gap-3 font-bold text-gray-800">
+                            <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-primary text-sm">✓</span>
+                            24/7 Health & Safety Monitoring
+                        </li>
+                    </ul>
+                    <button class="clay-btn px-8 py-4 text-lg font-bold">Book a Stay</button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="clay-card p-6 bg-white/80 backdrop-blur-sm text-center space-y-3">
+                        <div class="text-4xl">🐕</div>
+                        <h4 class="font-bold text-gray-900">Dog Boarding</h4>
+                        <p class="text-sm text-gray-600">Daily walks and group play sessions.</p>
+                    </div>
+                    <div class="clay-card p-6 bg-white/80 backdrop-blur-sm text-center space-y-3">
+                        <div class="text-4xl">🐈</div>
+                        <h4 class="font-bold text-gray-900">Cat Boarding</h4>
+                        <p class="text-sm text-gray-600">Quiet, separate spaces for felines.</p>
+                    </div>
+                    <div class="clay-card p-6 bg-white/80 backdrop-blur-sm text-center space-y-3">
+                        <div class="text-4xl">🦖</div>
+                        <h4 class="font-bold text-gray-900">Playtime</h4>
+                        <p class="text-sm text-gray-600">Interactive toys and supervised play.</p>
+                    </div>
+                    <div class="clay-card p-6 bg-white/80 backdrop-blur-sm text-center space-y-3">
+                        <div class="text-4xl">🍎</div>
+                        <h4 class="font-bold text-gray-900">Custom Diet</h4>
+                        <p class="text-sm text-gray-600">Strictly following your pet's diet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-primary drop-shadow-sm">Happy Pet Parents</h2>
+                <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">Hear from our community in Patna!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="clay-card p-8 bg-white/90 backdrop-blur-sm space-y-4 relative">
+                    <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                    <p class="text-gray-700 italic leading-relaxed">
+                        "Best pet store in Saguna More! They have everything I need for my Labrador, and the home visit service is a lifesaver."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-orange-100 pt-4">
+                        <div class="w-12 h-12 bg-orange-200 rounded-full flex items-center justify-center font-bold text-primary">RK</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Rohan Kumar</h4>
+                            <p class="text-sm text-gray-500 italic">Dog Parent</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="clay-card p-8 bg-white/90 backdrop-blur-sm space-y-4 relative md:-translate-y-4">
+                    <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                    <p class="text-gray-700 italic leading-relaxed">
+                        "The grooming session was fantastic. My cat was so calm, and she smells amazing now. Highly recommend Patna Pets!"
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-orange-100 pt-4">
+                        <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center font-bold text-primary">AS</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Anjali Singh</h4>
+                            <p class="text-sm text-gray-500 italic">Cat Mom</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="clay-card p-8 bg-white/90 backdrop-blur-sm space-y-4 relative">
+                    <div class="flex text-yellow-400 text-xl">★★★★★</div>
+                    <p class="text-gray-700 italic leading-relaxed">
+                        "Got great advice on pet medicine here. The staff is very knowledgeable and genuinely cares about animals."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-orange-100 pt-4">
+                        <div class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center font-bold text-primary">MS</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Manoj Sharma</h4>
+                            <p class="text-sm text-gray-500 italic">Pet Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-primary drop-shadow-sm">Frequently Asked Questions</h2>
+                <p class="text-gray-800 mt-4 text-lg font-medium">Got questions? We have answers!</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- FAQ Item 1 -->
+                <details class="clay-card bg-white/90 backdrop-blur-sm p-6 rounded-3xl group cursor-pointer open:bg-orange-50/90 transition-colors">
+                    <summary class="flex justify-between items-center font-bold text-xl text-gray-800 list-none">
+                        <span>Do you provide home delivery in Patna?</span>
+                        <span class="text-primary text-2xl group-open:rotate-180 transition-transform">⌵</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">
+                        Yes! We offer same-day home delivery for food, medicines, and accessories across Patna. Just call us or order via WhatsApp.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 2 -->
+                <details class="clay-card bg-white/90 backdrop-blur-sm p-6 rounded-3xl group cursor-pointer open:bg-orange-50/90 transition-colors">
+                    <summary class="flex justify-between items-center font-bold text-xl text-gray-800 list-none">
+                        <span>How can I book a grooming session?</span>
+                        <span class="text-primary text-2xl group-open:rotate-180 transition-transform">⌵</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">
+                        You can book a slot by calling us directly or visiting our store at Saguna More. We also offer home grooming services for checking!
+                    </p>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details class="clay-card bg-white/90 backdrop-blur-sm p-6 rounded-3xl group cursor-pointer open:bg-orange-50/90 transition-colors">
+                    <summary class="flex justify-between items-center font-bold text-xl text-gray-800 list-none">
+                        <span>Do you have a vet for clinical support?</span>
+                        <span class="text-primary text-2xl group-open:rotate-180 transition-transform">⌵</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">
+                        Absolutely. We provide expert clinical home visits and consultation for your pet's health and vaccination needs.
+                    </p>
+                </details>
+
+                <!-- FAQ Item 4 -->
+                <details class="clay-card bg-white/90 backdrop-blur-sm p-6 rounded-3xl group cursor-pointer open:bg-orange-50/90 transition-colors">
+                    <summary class="flex justify-between items-center font-bold text-xl text-gray-800 list-none">
+                        <span>What are your store timings?</span>
+                        <span class="text-primary text-2xl group-open:rotate-180 transition-transform">⌵</span>
+                    </summary>
+                    <p class="mt-4 text-gray-600 leading-relaxed">
+                        We are open every day from 10:00 AM to 9:00 PM. Come visit us at Saguna More!
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto reveal">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-primary drop-shadow-sm">Pet Care Blog</h2>
+                <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">Tips and tricks from our experts to keep your pets happy.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=500&auto=format&fit=crop" alt="Blog 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest">Grooming Tips</span>
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">5 Tips for Summer Pet Care</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Keep your furry friends cool and hydrated during Patna's hot summers with these expert tips.</p>
+                        <a href="#" class="inline-block font-bold text-primary hover:underline ornament-paw">Read More →</a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=500&auto=format&fit=crop" alt="Blog 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest">Nutrition</span>
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">Choosing the Right Food for Your Dog</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">A guide to understanding pet nutrition labels and picking the best diet for different breeds.</p>
+                        <a href="#" class="inline-block font-bold text-primary hover:underline ornament-paw">Read More →</a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3 -->
+                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop" alt="Blog 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest">Health</span>
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">Importance of Regular Vaccination</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Don't skip the shots! Learn why keeping updated with vaccinations is crucial for pet longevity.</p>
+                        <a href="#" class="inline-block font-bold text-primary hover:underline ornament-paw">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="bg-primary rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden shadow-xl"
+        >
+          <div
+            class="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -translate-x-10 -translate-y-10"
+          ></div>
+          <div
+            class="absolute bottom-0 right-0 w-40 h-40 bg-white/10 rounded-full translate-x-10 translate-y-10"
+          ></div>
+
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 relative z-10">
+            Ready to Pamper Your Pet?
+          </h2>
+          <p
+            class="text-orange-100 text-xl mb-10 max-w-2xl mx-auto relative z-10"
+          >
+            Visit our store in Patna or order online for same-day delivery!
+          </p>
+          <div
+            class="relative z-10 flex flex-col sm:flex-row justify-center gap-4"
+          >
+            <button
+              class="px-8 py-4 bg-white text-primary rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+            >
+              Visit Store
+            </button>
+            <button
+              class="px-8 py-4 bg-orange-600 text-white border-2 border-orange-400 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Happy Tails Gallery -->
+    <section id="gallery" class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-primary drop-shadow-sm">Happy Tails Gallery</h2>
+                <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">Join our community of happy pets in Patna!</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div class="clay-card overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=500&auto=format&fit=crop" alt="Pet 1" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="clay-card overflow-hidden group rotate-2">
+                    <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=500&auto=format&fit=crop" alt="Pet 2" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="clay-card overflow-hidden group -rotate-1">
+                    <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=500&auto=format&fit=crop" alt="Pet 3" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="clay-card overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1491485880348-85d48a9e5312?q=80&w=500&auto=format&fit=crop" alt="Pet 4" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section id="contact" class="py-20 px-4 sm:px-8 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Contact Form Card -->
+                <div class="clay-card bg-white/90 backdrop-blur-md p-8 md:p-12 shadow-2xl">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Send a Paw-message!</h2>
+                    <form class="space-y-4">
+                        <div class="space-y-2">
+                            <label class="font-bold text-gray-700 ml-2">Your Name</label>
+                            <input type="text" placeholder="Enter your name" class="w-full px-6 py-4 rounded-2xl bg-orange-50 border-none focus:ring-2 focus:ring-primary shadow-inner text-gray-800">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-bold text-gray-700 ml-2">Pet's Name</label>
+                            <input type="text" placeholder="Tell us about your pet" class="w-full px-6 py-4 rounded-2xl bg-orange-50 border-none focus:ring-2 focus:ring-primary shadow-inner text-gray-800">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-bold text-gray-700 ml-2">Message</label>
+                            <textarea rows="4" placeholder="How can we help?" class="w-full px-6 py-4 rounded-2xl bg-orange-50 border-none focus:ring-2 focus:ring-primary shadow-inner text-gray-800"></textarea>
+                        </div>
+                        <button type="submit" class="clay-btn w-full py-4 text-xl font-bold mt-4">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Info Card -->
+                <div class="space-y-8">
+                    <div class="clay-card bg-primary text-white p-8 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl">📞</div>
+                        <h3 class="text-2xl font-bold mb-4">Quick Contact</h3>
+                        <p class="text-lg opacity-90 mb-4 font-medium leading-relaxed">Reach out for home visits or urgent clinical support.</p>
+                        <div class="text-2xl font-bold underline">+91 91234 56789</div>
+                        <div class="mt-4 font-bold text-orange-200 uppercase tracking-widest text-sm">WhatsApp Available</div>
+                    </div>
+
+                    <div class="clay-card bg-white/90 backdrop-blur-md p-8 shadow-xl border-l-8 border-primary">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Store Location</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Come visit us for the best grooming products and accessories in Patna!
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <span class="bg-orange-100 p-3 rounded-xl">📍</span>
+                                <span class="font-bold text-gray-800">Saguna More, Patna, Bihar</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="bg-orange-100 p-3 rounded-xl">📧</span>
+                                <span class="font-bold text-gray-800">hello@patnapets.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extensive Footer -->
+    <footer class="pt-20 pb-12 px-4 sm:px-8 border-t border-orange-200/50 backdrop-blur-md bg-white/30 relative z-10 overflow-hidden">
+        <!-- Decoration paws -->
+        <div class="absolute top-10 left-10 text-orange-200/20 text-6xl rotate-12 -z-10 animate-float">🐾</div>
+        <div class="absolute bottom-10 right-10 text-orange-200/20 text-8xl -rotate-12 -z-10 animate-float-delayed">🐾</div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Branding & Info -->
+                <div class="space-y-6">
+                    <div class="text-3xl font-bold text-primary tracking-tighter">Patna Pets 🐾</div>
+                    <p class="text-gray-600 font-medium leading-relaxed">
+                        Your trusted partner in pet care since 2018. We provide premium products, professional grooming, and vet-approved clinical support in Patna.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white rounded-xl shadow-clay flex items-center justify-center text-primary hover:scale-110 transition-all">FB</a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-xl shadow-clay flex items-center justify-center text-primary hover:scale-110 transition-all">IG</a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-xl shadow-clay flex items-center justify-center text-primary hover:scale-110 transition-all">TW</a>
+                        <a href="#" class="w-10 h-10 bg-white rounded-xl shadow-clay flex items-center justify-center text-primary hover:scale-110 transition-all">YT</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-bold text-gray-900">Explore</h4>
+                    <ul class="space-y-4 text-gray-600 font-bold">
+                        <li><a href="#services" class="hover:text-primary transition-all">Our Services</a></li>
+                        <li><a href="#boarding" class="hover:text-primary transition-all">Pet Boarding</a></li>
+                        <li><a href="#blog" class="hover:text-primary transition-all">Care Blog</a></li>
+                        <li><a href="#gallery" class="hover:text-primary transition-all">Happy Gallery</a></li>
+                        <li><a href="#faq" class="hover:text-primary transition-all">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services Links -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-bold text-gray-900">Services</h4>
+                    <ul class="space-y-4 text-gray-600 font-bold">
+                        <li><a href="#" class="hover:text-primary transition-all">Professional Grooming</a></li>
+                        <li><a href="#" class="hover:text-primary transition-all">Clinical Home Visits</a></li>
+                        <li><a href="#" class="hover:text-primary transition-all">Pet Pharmacy</a></li>
+                        <li><a href="#" class="hover:text-primary transition-all">Premium Accessories</a></li>
+                        <li><a href="#" class="hover:text-primary transition-all">Dog Walking</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-bold text-gray-900">Contact Us</h4>
+                    <div class="space-y-4 text-gray-600 font-bold">
+                        <div class="flex items-start gap-3">
+                            <span>📍</span>
+                            <span>Saguna More, Danapur Road, Patna, Bihar 801503</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span>📞</span>
+                            <span>+91 91234 56789</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span>📧</span>
+                            <span>hello@patnapets.com</span>
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <span class="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-xs font-bold animate-pulse">
+                            ● We are open today!
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-12 border-t border-orange-200/50 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-gray-500 font-semibold italic text-sm text-center md:text-left">
+                    © 2026 Patna Pets. Crafted with ❤️ for Patna's pets. 
+                </p>
+                <div class="flex flex-col items-center md:items-end">
+                    <a href="https://siteonsub.com/" target="_blank" class="clay-btn px-6 py-2 text-sm font-bold flex items-center gap-2 group">
+                        Run on SiteOnSub
+                        <span class="group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Intersection Observer Script -->
+    <script>
+      const observerOptions = {
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Paw Trail Script
+      let lastPawTime = 0;
+      document.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastPawTime < 100) return; // Limit frequency
+
+        lastPawTime = now;
+        const paw = document.createElement('div');
+        paw.className = 'paw-trail';
+        paw.innerHTML = '🐾';
+        paw.style.left = (e.clientX - 12) + 'px';
+        paw.style.top = (e.clientY - 12) + 'px';
+        
+        // Random rotation for variety
+        const rot = Math.random() * 40 - 20;
+        paw.style.transform = `rotate(${rot}deg)`;
+
+        document.body.appendChild(paw);
+
+        setTimeout(() => {
+          paw.style.opacity = '0';
+          paw.style.transform = `rotate(${rot}deg) translateY(-20px) scale(0.5)`;
+          setTimeout(() => paw.remove(), 800);
+        }, 50);
+      });
+    </script>
+  </body>
+</html>
