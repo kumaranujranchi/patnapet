@@ -119,6 +119,15 @@
         z-index: 10000;
         transition: opacity 0.8s ease-out, transform 0.8s ease-out;
       }
+
+      /* Hide Scrollbar for Carousel */
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     </style>
   </head>
   <body class="selection:bg-orange-200">
@@ -212,9 +221,9 @@
                 <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">Everything your pet needs to live a happy, healthy, and stylish life.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                 <!-- Service 1 -->
-                <div class="clay-card p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
+                <div class="clay-card p-4 md:p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
                     <div class="w-20 h-20 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center text-4xl group-hover:scale-110 transition-transform shadow-inner">
                         🛁
                     </div>
@@ -223,7 +232,7 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div class="clay-card p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
+                <div class="clay-card p-4 md:p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
                     <div class="w-20 h-20 mx-auto bg-blue-100 rounded-2xl flex items-center justify-center text-4xl group-hover:scale-110 transition-transform shadow-inner">
                         💊
                     </div>
@@ -232,7 +241,7 @@
                 </div>
 
                 <!-- Service 3 -->
-                <div class="clay-card p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
+                <div class="clay-card p-4 md:p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
                     <div class="w-20 h-20 mx-auto bg-green-100 rounded-2xl flex items-center justify-center text-4xl group-hover:scale-110 transition-transform shadow-inner">
                         🩺
                     </div>
@@ -241,7 +250,7 @@
                 </div>
 
                 <!-- Service 4 -->
-                <div class="clay-card p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
+                <div class="clay-card p-4 md:p-8 text-center space-y-6 group bg-white/90 backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300">
                     <div class="w-20 h-20 mx-auto bg-purple-100 rounded-2xl flex items-center justify-center text-4xl group-hover:scale-110 transition-transform shadow-inner">
                         🧸
                     </div>
@@ -259,28 +268,28 @@
                 <h2 class="text-4xl font-bold text-primary drop-shadow-sm">Why is Regular Grooming Essential?</h2>
                 <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">It's not just about looks—it's about health and happiness.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
-                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 md:gap-6 text-center">
+                <div class="clay-card p-3 md:p-6 bg-white/70 backdrop-blur-sm">
                     <div class="text-3xl mb-3">✨</div>
                     <h4 class="font-bold text-gray-900">Healthy Coat</h4>
                     <p class="text-sm text-gray-600">Promotes shine and skin health.</p>
                 </div>
-                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+                <div class="clay-card p-3 md:p-6 bg-white/70 backdrop-blur-sm">
                     <div class="text-3xl mb-3">🧶</div>
                     <h4 class="font-bold text-gray-900">No Matting</h4>
                     <p class="text-sm text-gray-600">Prevents painful tangles and odor.</p>
                 </div>
-                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+                <div class="clay-card p-3 md:p-6 bg-white/70 backdrop-blur-sm">
                     <div class="text-3xl mb-3">🔍</div>
                     <h4 class="font-bold text-gray-900">Check Parasites</h4>
                     <p class="text-sm text-gray-600">Spot ticks or infections early.</p>
                 </div>
-                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+                <div class="clay-card p-3 md:p-6 bg-white/70 backdrop-blur-sm">
                     <div class="text-3xl mb-3">💅</div>
                     <h4 class="font-bold text-gray-900">Nail Comfort</h4>
                     <p class="text-sm text-gray-600">Keep paws healthy and comfy.</p>
                 </div>
-                <div class="clay-card p-6 bg-white/70 backdrop-blur-sm">
+                <div class="clay-card p-3 md:p-6 bg-white/70 backdrop-blur-sm col-span-2 md:col-span-1 lg:col-span-1 w-1/2 md:w-full mx-auto">
                     <div class="text-3xl mb-3">🌈</div>
                     <h4 class="font-bold text-gray-900">Boost Mood</h4>
                     <p class="text-sm text-gray-600">Improves your pet's overall comfort.</p>
@@ -322,28 +331,29 @@
     <section class="py-20 px-4 sm:px-8 relative z-10">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-4xl font-bold text-primary drop-shadow-sm mb-16">Why Choose Patna Pets?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+            <p class="md:hidden text-center text-sm text-gray-500 mb-2 animate-pulse font-medium">Swipe to explore ➡</p>
+            <div class="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 px-2 hide-scrollbar">
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm min-w-[70vw] md:min-w-0 snap-center">
                     <div class="text-4xl mb-4">🏆</div>
                     <h4 class="font-bold text-gray-900">Certified Groomers</h4>
                     <p class="text-sm text-gray-600 mt-2">Love and skill in every touch.</p>
                 </div>
-                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm min-w-[70vw] md:min-w-0 snap-center">
                     <div class="text-4xl mb-4">🛡️</div>
                     <h4 class="font-bold text-gray-900">Safe & Hygienic</h4>
                     <p class="text-sm text-gray-600 mt-2">Sanitized tools and equipment.</p>
                 </div>
-                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm min-w-[70vw] md:min-w-0 snap-center">
                     <div class="text-4xl mb-4">🎨</div>
                     <h4 class="font-bold text-gray-900">Unique Experience</h4>
                     <p class="text-sm text-gray-600 mt-2">Specific to breed and temperament.</p>
                 </div>
-                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm min-w-[70vw] md:min-w-0 snap-center">
                     <div class="text-4xl mb-4">💎</div>
                     <h4 class="font-bold text-gray-900">Best Quality</h4>
                     <p class="text-sm text-gray-600 mt-2">Gentle vet-approved products.</p>
                 </div>
-                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm">
+                <div class="p-6 clay-card bg-white/60 backdrop-blur-sm min-w-[70vw] md:min-w-0 snap-center">
                     <div class="text-4xl mb-4">🧘</div>
                     <h4 class="font-bold text-gray-900">Comfort First</h4>
                     <p class="text-sm text-gray-600 mt-2">Calm and stress-free visits.</p>
@@ -447,9 +457,10 @@
                 <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">Hear from our community in Patna!</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <p class="md:hidden text-center text-sm text-gray-500 mb-2 animate-pulse font-medium">Swipe to explore ➡</p>
+            <div class="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 px-2 hide-scrollbar">
                 <!-- Testimonial 1 -->
-                <div class="clay-card p-8 bg-white/90 backdrop-blur-sm space-y-4 relative">
+                <div class="clay-card p-6 md:p-8 bg-white/90 backdrop-blur-sm space-y-4 relative min-w-[85vw] md:min-w-0 snap-center">
                     <div class="flex text-yellow-400 text-xl">★★★★★</div>
                     <p class="text-gray-700 italic leading-relaxed">
                         "Best pet store in Saguna More! They have everything I need for my Labrador, and the home visit service is a lifesaver."
@@ -464,7 +475,7 @@
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="clay-card p-8 bg-white/90 backdrop-blur-sm space-y-4 relative md:-translate-y-4">
+                <div class="clay-card p-6 md:p-8 bg-white/90 backdrop-blur-sm space-y-4 relative md:-translate-y-4 min-w-[85vw] md:min-w-0 snap-center">
                     <div class="flex text-yellow-400 text-xl">★★★★★</div>
                     <p class="text-gray-700 italic leading-relaxed">
                         "The grooming session was fantastic. My cat was so calm, and she smells amazing now. Highly recommend Patna Pets!"
@@ -479,7 +490,7 @@
                 </div>
 
                 <!-- Testimonial 3 -->
-                <div class="clay-card p-8 bg-white/90 backdrop-blur-sm space-y-4 relative">
+                <div class="clay-card p-6 md:p-8 bg-white/90 backdrop-blur-sm space-y-4 relative min-w-[85vw] md:min-w-0 snap-center">
                     <div class="flex text-yellow-400 text-xl">★★★★★</div>
                     <p class="text-gray-700 italic leading-relaxed">
                         "Got great advice on pet medicine here. The staff is very knowledgeable and genuinely cares about animals."
@@ -560,9 +571,10 @@
                 <p class="text-gray-800 max-w-2xl mx-auto text-lg font-medium">Tips and tricks from our experts to keep your pets happy.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <p class="md:hidden text-center text-sm text-gray-500 mb-2 animate-pulse font-medium">Swipe to explore ➡</p>
+            <div class="flex md:grid md:grid-cols-3 gap-8 overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 px-2 hide-scrollbar">
                 <!-- Blog Post 1 -->
-                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group">
+                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group min-w-[85vw] md:min-w-0 snap-center">
                     <div class="h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=500&auto=format&fit=crop" alt="Blog 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -575,7 +587,7 @@
                 </div>
 
                 <!-- Blog Post 2 -->
-                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group">
+                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group min-w-[85vw] md:min-w-0 snap-center">
                     <div class="h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=500&auto=format&fit=crop" alt="Blog 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -588,7 +600,7 @@
                 </div>
 
                 <!-- Blog Post 3 -->
-                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group">
+                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group min-w-[85vw] md:min-w-0 snap-center">
                     <div class="h-48 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop" alt="Blog 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -878,6 +890,81 @@
       mobileLinks.forEach(link => {
           link.addEventListener('click', toggleMenu);
       });
+
+      // Auto-Scroll Logic for Carousels
+      function setupAutoScroll(containerSelector) {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
+
+        let scrollInterval;
+        let isPaused = false;
+        const scrollSpeed = 1; // Pixels per tick
+        const scrollDelay = 20; // Milliseconds
+
+        function startScroll() {
+            // Only auto-scroll on mobile where it's a flex container
+            if (window.innerWidth >= 768) return; 
+            
+            clearInterval(scrollInterval);
+            scrollInterval = setInterval(() => {
+                if (!isPaused) {
+                    if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1) {
+                        container.scrollLeft = 0; // Reset to start
+                    } else {
+                        container.scrollLeft += scrollSpeed;
+                    }
+                }
+            }, scrollDelay);
+        }
+
+        function stopScroll() {
+            clearInterval(scrollInterval);
+        }
+
+        // Pause on interaction
+        container.addEventListener('mouseenter', () => isPaused = true);
+        container.addEventListener('mouseleave', () => isPaused = false);
+        container.addEventListener('touchstart', () => isPaused = true);
+        container.addEventListener('touchend', () => setTimeout(() => isPaused = false, 2000)); // Resume after delay
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                stopScroll();
+            } else {
+                startScroll();
+            }
+        });
+
+        // Initial start
+        startScroll();
+      }
+
+      // Initialize for both carousels
+      // Note: We need to add unique IDs or classes to target them specifically if they share generic classes
+      // For now, let's target them by their parent section contexts which is safer
+      
+      // Target "Why Choose Us" carousel
+      const chooseUsSection = document.querySelector('#why-choose-us .overflow-x-auto') || document.querySelector('section:nth-of-type(4) .overflow-x-auto');
+      if (chooseUsSection) {
+          chooseUsSection.classList.add('auto-scroll-container-1');
+          setupAutoScroll('.auto-scroll-container-1');
+      }
+
+      // Target "Testimonials" carousel
+      const testimonialsSection = document.querySelector('#testimonials .overflow-x-auto');
+      if (testimonialsSection) {
+          testimonialsSection.classList.add('auto-scroll-container-2');
+          setupAutoScroll('.auto-scroll-container-2');
+      }
+
+      // Target "Pet Care Blog" carousel
+      const blogSection = document.querySelector('#blog .overflow-x-auto');
+      if (blogSection) {
+          blogSection.classList.add('auto-scroll-container-3');
+          setupAutoScroll('.auto-scroll-container-3');
+      }
+
     </script>
   </body>
 </html>
