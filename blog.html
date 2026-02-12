@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Patna Pets</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#F97316",
+              secondary: "#FB923C",
+              cta: "#2563EB",
+              background: "#FFF7ED",
+              text: "#9A3412",
+            },
+            fontFamily: {
+              headings: ["Fredoka", "sans-serif"],
+              body: ["Nunito", "sans-serif"],
+            },
+            boxShadow: {
+              clay: "inset -10px -10px 20px rgba(174, 174, 192, 0.2), inset 10px 10px 20px #FFFFFF, 8px 8px 20px rgba(174, 174, 192, 0.2)",
+              "clay-btn":
+                "inset -6px -6px 10px rgba(0, 0, 0, 0.2), inset 6px 6px 10px rgba(255, 255, 255, 0.3), 6px 6px 15px rgba(0, 0, 0, 0.1)",
+              "clay-card": "20px 20px 60px #d1d5db, -20px -20px 60px #ffffff",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --primary: #f97316;
+        --secondary: #fb923c;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #fff7ed;
+        color: #9a3412;
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: "Fredoka", sans-serif;
+      }
+      .clay-card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 2rem;
+        box-shadow:
+          8px 8px 16px #e6ddd6,
+          -8px -8px 16px #ffffff;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .clay-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 
+          15px 15px 30px rgba(0, 0, 0, 0.1),
+          -10px -10px 20px rgba(255, 255, 255, 1);
+      }
+      .clay-btn {
+        background-color: #f97316;
+        color: white;
+        border-radius: 1.5rem;
+        box-shadow:
+          inset -4px -4px 8px rgba(0, 0, 0, 0.1),
+          inset 4px 4px 8px rgba(255, 255, 255, 0.2),
+          6px 6px 12px rgba(249, 115, 22, 0.2);
+        transition: all 0.3s ease;
+      }
+      .clay-btn:hover {
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 10px 10px 20px rgba(249, 115, 22, 0.3);
+      }
+      .clay-btn:active {
+        box-shadow:
+          inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+          inset -4px -4px 8px rgba(255, 255, 255, 0.1);
+        transform: scale(0.98);
+      }
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+      }
+      .animate-float {
+        animation: float 4s ease-in-out infinite;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 1s ease-out, transform 0.8s ease-out;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .paw-trail {
+        position: fixed;
+        pointer-events: none;
+        font-size: 24px;
+        opacity: 0.8;
+        z-index: 10000;
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+    </style>
+  </head>
+  <body class="selection:bg-orange-200">
+    <!-- Global Background -->
+    <div class="fixed top-0 left-0 w-full h-full bg-white/80 -z-40"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-4 px-4 sm:px-8">
+      <div class="max-w-7xl mx-auto clay-card px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md">
+        <a href="index.html" class="text-2xl font-bold text-primary tracking-wide">Patna Pets 🐾</a>
+        <div class="hidden md:flex space-x-8 font-semibold text-gray-700">
+          <a href="index.html#services" class="hover:text-primary transition-colors">Services</a>
+          <a href="index.html#boarding" class="hover:text-primary transition-colors">Boarding</a>
+          <a href="blog.html" class="text-primary transition-colors">Blog</a>
+          <a href="index.html#about" class="hover:text-primary transition-colors">About Us</a>
+          <a href="index.html#contact" class="hover:text-primary transition-colors">Contact</a>
+        </div>
+        <button onclick="window.location.href='index.html#contact'" class="clay-btn px-6 py-2 font-bold tracking-wide hidden md:block">Visit Us</button>
+        <button id="mobile-menu-btn" class="md:hidden text-3xl text-primary focus:outline-none">☰</button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="fixed top-0 left-0 h-screen w-64 bg-white/95 backdrop-blur-xl shadow-2xl transform -translate-x-full transition-transform duration-500 ease-out z-50 p-6 flex flex-col space-y-6">
+        <div class="flex justify-between items-center mb-4">
+            <span class="text-2xl font-bold text-primary">Menu</span>
+            <button id="close-menu-btn" class="text-3xl text-gray-600">&times;</button>
+        </div>
+        <a href="index.html#services" class="text-lg font-bold text-gray-700 hover:text-primary transition-colors mobile-link">Services</a>
+        <a href="index.html#boarding" class="text-lg font-bold text-gray-700 hover:text-primary transition-colors mobile-link">Boarding</a>
+        <a href="blog.html" class="text-lg font-bold text-primary transition-colors mobile-link">Blog</a>
+        <a href="index.html#about" class="text-lg font-bold text-gray-700 hover:text-primary transition-colors mobile-link">About Us</a>
+        <a href="index.html#contact" class="text-lg font-bold text-gray-700 hover:text-primary transition-colors mobile-link">Contact</a>
+      </div>
+      <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300 opacity-0"></div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="pt-32 pb-12 px-4 sm:px-8 bg-orange-50/50">
+        <div class="max-w-7xl mx-auto text-center reveal active">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Patna Pets <span class="text-primary">Blog</span> 🐾</h1>
+            <p class="text-xl text-gray-700 max-w-2xl mx-auto">Expert advice, tips, and stories from our pet care specialists.</p>
+        </div>
+    </section>
+
+    <!-- Blog Listing Section -->
+    <section class="py-12 px-4 sm:px-8 min-h-screen">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=500&auto=format&fit=crop" alt="Blog 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">MAY 15, 2026</div>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest">Grooming</span>
+                        <h2 class="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+                            <a href="blog-summer.html">5 Tips for Summer Pet Care</a>
+                        </h2>
+                        <p class="text-gray-600 leading-relaxed">Keep your furry friends cool and hydrated during Patna's hot summers with these expert tips.</p>
+                        <a href="blog-summer.html" class="inline-block font-bold text-primary hover:underline ornament-paw mt-2">Read Full Article →</a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=500&auto=format&fit=crop" alt="Blog 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">JUNE 02, 2026</div>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest">Nutrition</span>
+                        <h2 class="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+                            <a href="blog-nutrition.html">Choosing the Right Food for Your Dog</a>
+                        </h2>
+                        <p class="text-gray-600 leading-relaxed">A guide to understanding pet nutrition labels and picking the best diet for different breeds.</p>
+                        <a href="blog-nutrition.html" class="inline-block font-bold text-primary hover:underline ornament-paw mt-2">Read Full Article →</a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3 -->
+                <div class="clay-card overflow-hidden bg-white/90 backdrop-blur-sm group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop" alt="Blog 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">JUNE 12, 2026</div>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <span class="text-primary font-bold text-xs uppercase tracking-widest">Health</span>
+                        <h2 class="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">
+                            <a href="blog-vaccination.html">Importance of Regular Vaccination</a>
+                        </h2>
+                        <p class="text-gray-600 leading-relaxed">Don't skip the shots! Learn why keeping updated with vaccinations is crucial for pet longevity.</p>
+                        <a href="blog-vaccination.html" class="inline-block font-bold text-primary hover:underline ornament-paw mt-2">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-8 border-t border-orange-200/50 backdrop-blur-md bg-white/30 relative z-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-3xl font-bold text-primary tracking-tighter">Patna Pets 🐾</div>
+            <div class="flex space-x-8 text-gray-700 font-bold">
+                <a href="#" class="hover:text-primary transition-all hover:scale-110">Privacy</a>
+                <a href="#" class="hover:text-primary transition-all hover:scale-110">Terms</a>
+                <a href="#" class="hover:text-primary transition-all hover:scale-110">Instagram</a>
+                <a href="#" class="hover:text-primary transition-all hover:scale-110">Facebook</a>
+            </div>
+            <p class="text-gray-500 font-semibold italic text-center md:text-right">
+                © 2026 Patna Pets. Crafted with ❤️ for Patna's pets.
+                <a href="https://siteonsub.com/" target="_blank" class="text-primary hover:underline ml-2">Run on SiteOnSub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('close-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('menu-overlay');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      function toggleMenu() {
+        const isClosed = mobileMenu.classList.contains('-translate-x-full');
+        if (isClosed) {
+            mobileMenu.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+        } else {
+            mobileMenu.classList.add('-translate-x-full');
+            overlay.classList.add('opacity-0');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
+      }
+
+      mobileBtn.addEventListener('click', toggleMenu);
+      closeBtn.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+       // Paw Trail Script
+       let lastPawTime = 0;
+       document.addEventListener('mousemove', (e) => {
+         const now = Date.now();
+         if (now - lastPawTime < 100) return;
+         lastPawTime = now;
+         const paw = document.createElement('div');
+         paw.className = 'paw-trail';
+         paw.innerHTML = '🐾';
+         paw.style.left = (e.clientX - 12) + 'px';
+         paw.style.top = (e.clientY - 12) + 'px';
+         const rot = Math.random() * 40 - 20;
+         paw.style.transform = `rotate(${rot}deg)`;
+         document.body.appendChild(paw);
+         setTimeout(() => {
+           paw.style.opacity = '0';
+           paw.style.transform = `rotate(${rot}deg) translateY(-20px) scale(0.5)`;
+           setTimeout(() => paw.remove(), 800);
+         }, 50);
+       });
+    </script>
+  </body>
+</html>
