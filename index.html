@@ -141,6 +141,7 @@
         <div class="text-2xl font-bold text-primary tracking-wide">
           Patna Pets 🐾
         </div>
+        <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-8 font-semibold text-gray-700">
           <a href="#services" class="hover:text-primary transition-colors">Services</a>
           <a href="#boarding" class="hover:text-primary transition-colors">Boarding</a>
@@ -148,12 +149,35 @@
           <a href="#about" class="hover:text-primary transition-colors">About Us</a>
           <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
         </div>
-        <button
-          class="clay-btn px-6 py-2 font-bold tracking-wide hidden sm:block"
-        >
+        <button class="clay-btn px-6 py-2 font-bold tracking-wide hidden md:block">
           Visit Us
         </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-3xl text-primary focus:outline-none">
+          ☰
+        </button>
       </div>
+
+      <!-- Mobile Menu Drawer (Slides from Left) -->
+      <div id="mobile-menu" class="fixed top-0 left-0 h-screen w-64 bg-white/95 backdrop-blur-xl shadow-2xl transform -translate-x-full transition-transform duration-500 ease-out z-50 p-6 flex flex-col space-y-6">
+        <div class="flex justify-between items-center mb-4">
+            <span class="text-2xl font-bold text-primary">Menu</span>
+            <button id="close-menu-btn" class="text-3xl text-gray-600">&times;</button>
+        </div>
+        <a href="#services" class="text-lg font-bold text-gray-700 hover:text-primary transition-colors mobile-link">Services</a>
+        <a href="#boarding" class="text-lg font-bold text-gray-700 hover:text-primary transition-colors mobile-link">Boarding</a>
+        <a href="#blog" class="text-lg font-bold text-gray-700 hover:text-primary transition-colors mobile-link">Blog</a>
+        <a href="#about" class="text-lg font-bold text-gray-700 hover:text-primary transition-colors mobile-link">About Us</a>
+        <a href="#contact" class="text-lg font-bold text-gray-700 hover:text-primary transition-colors mobile-link">Contact</a>
+        <div class="pt-4 border-t border-gray-200">
+            <div class="text-sm font-bold text-gray-500 mb-2">Contact Us</div>
+            <div class="text-primary font-bold">+91 98019 79990</div>
+        </div>
+      </div>
+      
+      <!-- Overlay -->
+      <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300 opacity-0"></div>
     </nav>
 
     <!-- Hero Section -->
@@ -824,6 +848,35 @@
           paw.style.transform = `rotate(${rot}deg) translateY(-20px) scale(0.5)`;
           setTimeout(() => paw.remove(), 800);
         }, 50);
+      });
+
+      // Mobile Menu Logic
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('close-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('menu-overlay');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      function toggleMenu() {
+        const isClosed = mobileMenu.classList.contains('-translate-x-full');
+        if (isClosed) {
+            mobileMenu.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+        } else {
+            mobileMenu.classList.add('-translate-x-full');
+            overlay.classList.add('opacity-0');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
+      }
+
+      mobileBtn.addEventListener('click', toggleMenu);
+      closeBtn.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      
+      // Close menu when a link is clicked
+      mobileLinks.forEach(link => {
+          link.addEventListener('click', toggleMenu);
       });
     </script>
   </body>
